@@ -1,0 +1,18 @@
+# Core requirements
+numpy>=1.21.0
+torch>=1.9.0
+spacy>=3.2.0
+networkx>=2.6.3
+markdown>=3.3.4
+langdetect>=1.0.9
+textstat>=0.7.3
+textblob>=0.15.3
+transformers>=4.12.0
+scikit-learn>=1.0.0
+
+# NLP model for spaCy (install with: python -m spacy download en_core_web_sm)
+# en_core_web_sm
+
+# Additional requirements
+nltk>=3.6.5
+tqdm>=4.62.3
