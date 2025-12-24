@@ -5,14 +5,9 @@ import numpy as np
 import pytest
 import torch
 
-from src.core.FeatureCore import (
-    AnalysisError,
-    AnalysisResult,
-    AnalyticsEngine,
-    FeatureGenerationError,
-    FeatureProcessor,
-    SystemConfig,
-)
+from src.core.FeatureCore import (AnalysisError, AnalysisResult,
+                                  AnalyticsEngine, FeatureGenerationError,
+                                  FeatureProcessor, SystemConfig)
 
 
 class TestFeatureGenerationError:
@@ -117,13 +112,11 @@ class TestFeatureProcessor:
     @pytest.fixture
     def feature_processor(self, config):
         """Create a FeatureProcessor instance with mocked dependencies for testing."""
-        with patch(
-            "src.core.FeatureCore.logging.getLogger"
-        ) as mock_get_logger, patch.object(
-            FeatureProcessor, "_initialize_bert"
-        ) as mock_initialize_bert, patch(
-            "src.core.FeatureCore.spacy.load"
-        ) as mock_spacy_load:
+        with (
+            patch("src.core.FeatureCore.logging.getLogger") as mock_get_logger,
+            patch.object(FeatureProcessor, "_initialize_bert") as mock_initialize_bert,
+            patch("src.core.FeatureCore.spacy.load") as mock_spacy_load,
+        ):
 
             # Create mock logger
             mock_logger = Mock(spec=logging.Logger)
@@ -235,9 +228,10 @@ class TestAnalyticsEngine:
     @pytest.fixture
     def analytics_engine(self, config):
         """Create an AnalyticsEngine instance with mocked dependencies for testing."""
-        with patch("src.core.FeatureCore.HDBSCAN") as mock_hdbscan_class, patch(
-            "src.core.FeatureCore.LatentDirichletAllocation"
-        ) as mock_lda_class:
+        with (
+            patch("src.core.FeatureCore.HDBSCAN") as mock_hdbscan_class,
+            patch("src.core.FeatureCore.LatentDirichletAllocation") as mock_lda_class,
+        ):
 
             # Create mock HDBSCAN instance
             mock_hdbscan = Mock()

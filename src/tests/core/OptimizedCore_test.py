@@ -6,20 +6,13 @@ import numpy as np
 import pytest
 
 from src.config.SystemConfig import SystemConfig
-from src.core.OptimizedCore import (
-    EnhancedProcessor,
-    NLTKProcessor,
-    OptimizedStructure,
-    ProcessedContent,
-    ProcessingResult,
-    ReorganizationError,
-    ReorganizationResult,
-    StorageOrganizationError,
-    StorageOrganizer,
-    StructureOptimizationError,
-    StructureOptimizer,
-    SystemManager,
-)
+from src.core.OptimizedCore import (EnhancedProcessor, NLTKProcessor,
+                                    OptimizedStructure, ProcessedContent,
+                                    ProcessingResult, ReorganizationError,
+                                    ReorganizationResult,
+                                    StorageOrganizationError, StorageOrganizer,
+                                    StructureOptimizationError,
+                                    StructureOptimizer, SystemManager)
 from src.FeatureCore import AnalysisResult as FCAnalysisResult
 
 
@@ -445,9 +438,10 @@ class TestStorageOrganizer:
         vault_path = Path("/test/vault")
 
         # Mock file operations
-        with patch("pathlib.Path.mkdir") as mock_mkdir, patch(
-            "src.core.OptimizedCore.shutil.copytree"
-        ) as mock_copytree:
+        with (
+            patch("pathlib.Path.mkdir") as mock_mkdir,
+            patch("src.core.OptimizedCore.shutil.copytree") as mock_copytree,
+        ):
 
             # Call the method
             await storage_organizer._create_backup(vault_path)
@@ -463,9 +457,10 @@ class TestStorageOrganizer:
         backup_path = Path("/test/backup")
 
         # Mock file operations
-        with patch("src.core.OptimizedCore.shutil.rmtree") as mock_rmtree, patch(
-            "src.core.OptimizedCore.shutil.copytree"
-        ) as mock_copytree:
+        with (
+            patch("src.core.OptimizedCore.shutil.rmtree") as mock_rmtree,
+            patch("src.core.OptimizedCore.shutil.copytree") as mock_copytree,
+        ):
 
             # Call the method
             await storage_organizer._rollback(backup_path)
@@ -484,9 +479,11 @@ class TestStorageOrganizer:
         vault_path = Path("/test/vault")
 
         # Mock file operations
-        with patch("pathlib.Path.exists") as mock_exists, patch(
-            "pathlib.Path.is_file"
-        ) as mock_is_file, patch("pathlib.Path.glob") as mock_glob:
+        with (
+            patch("pathlib.Path.exists") as mock_exists,
+            patch("pathlib.Path.is_file") as mock_is_file,
+            patch("pathlib.Path.glob") as mock_glob,
+        ):
 
             mock_exists.return_value = True
             mock_is_file.return_value = True
@@ -572,19 +569,16 @@ class TestSystemManager:
     @pytest.fixture
     def system_manager(self, config):
         """Create a SystemManager instance for testing."""
-        with patch(
-            "src.core.OptimizedCore.MarkdownProcessor"
-        ) as mock_md_processor, patch(
-            "src.core.OptimizedCore.FeatureProcessor"
-        ) as mock_feature_processor, patch(
-            "src.core.OptimizedCore.AnalyticsEngine"
-        ) as mock_analytics_engine, patch(
-            "src.core.OptimizedCore.StructureOptimizer"
-        ) as mock_structure_optimizer, patch(
-            "src.core.OptimizedCore.StorageOrganizer"
-        ) as mock_storage_organizer, patch(
-            "src.core.OptimizedCore.status.Status"
-        ) as mock_status:
+        with (
+            patch("src.core.OptimizedCore.MarkdownProcessor") as mock_md_processor,
+            patch("src.core.OptimizedCore.FeatureProcessor") as mock_feature_processor,
+            patch("src.core.OptimizedCore.AnalyticsEngine") as mock_analytics_engine,
+            patch(
+                "src.core.OptimizedCore.StructureOptimizer"
+            ) as mock_structure_optimizer,
+            patch("src.core.OptimizedCore.StorageOrganizer") as mock_storage_organizer,
+            patch("src.core.OptimizedCore.status.Status") as mock_status,
+        ):
 
             mock_status_instance = Mock()
             mock_status.return_value = mock_status_instance
@@ -693,17 +687,14 @@ class TestEnhancedProcessor:
     @pytest.fixture
     def enhanced_processor(self, config):
         """Create an EnhancedProcessor instance for testing."""
-        with patch("src.core.OptimizedCore.NLPCore") as mock_nlp_core, patch(
-            "src.core.OptimizedCore.MLEngine"
-        ) as mock_ml_engine, patch(
-            "src.core.OptimizedCore.GraphAnalyzer"
-        ) as mock_graph_analyzer, patch(
-            "src.core.OptimizedCore.SummaryGenerator"
-        ) as mock_summary_generator, patch(
-            "src.core.OptimizedCore.DataHandler"
-        ) as mock_data_handler, patch(
-            "src.core.OptimizedCore.status.Status"
-        ) as mock_status:
+        with (
+            patch("src.core.OptimizedCore.NLPCore") as mock_nlp_core,
+            patch("src.core.OptimizedCore.MLEngine") as mock_ml_engine,
+            patch("src.core.OptimizedCore.GraphAnalyzer") as mock_graph_analyzer,
+            patch("src.core.OptimizedCore.SummaryGenerator") as mock_summary_generator,
+            patch("src.core.OptimizedCore.DataHandler") as mock_data_handler,
+            patch("src.core.OptimizedCore.status.Status") as mock_status,
+        ):
 
             mock_status_instance = Mock()
             mock_status.return_value = mock_status_instance
@@ -737,13 +728,12 @@ class TestNLTKProcessor:
     @pytest.fixture
     def nltk_processor(self):
         """Create an NLTKProcessor instance for testing."""
-        with patch("nltk.tokenize.WhitespaceTokenizer") as mock_tokenizer, patch(
-            "nltk.stem.PorterStemmer"
-        ) as mock_stemmer, patch(
-            "nltk.stem.WordNetLemmatizer"
-        ) as mock_lemmatizer, patch(
-            "nltk.corpus.stopwords.words"
-        ) as mock_stopwords:
+        with (
+            patch("nltk.tokenize.WhitespaceTokenizer") as mock_tokenizer,
+            patch("nltk.stem.PorterStemmer") as mock_stemmer,
+            patch("nltk.stem.WordNetLemmatizer") as mock_lemmatizer,
+            patch("nltk.corpus.stopwords.words") as mock_stopwords,
+        ):
 
             mock_tokenizer.return_value = Mock()
             mock_stemmer.return_value = Mock()

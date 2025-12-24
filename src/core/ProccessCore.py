@@ -1,19 +1,10 @@
 from dataclasses import dataclass, field
 from types import TracebackType
-from typing import (
-    Any,
-    Dict,
-    Generic,
-)
+from typing import Any, Dict, Generic
 from typing import Iterator as TypingIterator
-from typing import (
-    List,
-    Optional,
-    TypeVar,
-)
+from typing import List, Optional, TypeVar
 
 from src.AnalysisInitializer import AnalysisInitializer  # type: ignore
-
 # Add type annotations as comments for modules missing py.typed markers
 from src.AnalyzerCore import ResultAnalyzer  # type: ignore
 from src.ExecutionCore import ExecutionCore  # type: ignore

@@ -3,24 +3,14 @@ from unittest.mock import Mock, patch
 
 import pytest
 
-from src.core.CompilationCore import (
-    CompilationContext,
-    CompilationCore,
-    CompilationEngine,
-    CompilationError,
-    CompilationResult,
-    CompilationStatus,
-    CompilerConfig,
-    ExecutionResult,
-    IntegrityVerifier,
-    ReportCompiler,
-    ReportGenerator,
-    SystemAnalyzer,
-    SystemData,
-    SystemScanner,
-    ValidationEngine,
-    ValidationStatus,
-)
+from src.core.CompilationCore import (CompilationContext, CompilationCore,
+                                      CompilationEngine, CompilationError,
+                                      CompilationResult, CompilationStatus,
+                                      CompilerConfig, ExecutionResult,
+                                      IntegrityVerifier, ReportCompiler,
+                                      ReportGenerator, SystemAnalyzer,
+                                      SystemData, SystemScanner,
+                                      ValidationEngine, ValidationStatus)
 
 
 class TestSystemAnalyzer:
@@ -48,11 +38,10 @@ class TestSystemAnalyzer:
 
     def test_init_with_debug(self):
         """Test initialization with debug mode enabled."""
-        with patch(
-            "src.core.CompilationCore.logging.getLogger"
-        ) as mock_get_logger, patch(
-            "src.core.CompilationCore.debug_mode"
-        ) as mock_debug_mode:
+        with (
+            patch("src.core.CompilationCore.logging.getLogger") as mock_get_logger,
+            patch("src.core.CompilationCore.debug_mode") as mock_debug_mode,
+        ):
 
             # Create mock logger
             mock_logger = Mock(spec=logging.Logger)
@@ -233,13 +222,11 @@ class TestCompilationCore:
     @pytest.fixture
     def compilation_core(self, config):
         """Create a CompilationCore instance with mocked dependencies for testing."""
-        with patch(
-            "src.core.CompilationCore.SystemAnalyzer"
-        ) as mock_analyzer_class, patch(
-            "src.core.CompilationCore.ReportCompiler"
-        ) as mock_compiler_class, patch(
-            "src.core.CompilationCore.ValidationEngine"
-        ) as mock_validator_class:
+        with (
+            patch("src.core.CompilationCore.SystemAnalyzer") as mock_analyzer_class,
+            patch("src.core.CompilationCore.ReportCompiler") as mock_compiler_class,
+            patch("src.core.CompilationCore.ValidationEngine") as mock_validator_class,
+        ):
 
             # Create mock instances
             mock_analyzer = Mock(spec=SystemAnalyzer)
@@ -308,13 +295,11 @@ class TestSystemScanner:
     @pytest.fixture
     def system_scanner(self):
         """Create a SystemScanner instance with mocked dependencies for testing."""
-        with patch(
-            "src.core.CompilationCore.CompilerConfig"
-        ) as mock_config_class, patch(
-            "src.core.CompilationCore.CompilationCore"
-        ) as mock_core_class, patch(
-            "src.core.CompilationCore.ReportGenerator"
-        ) as mock_generator_class:
+        with (
+            patch("src.core.CompilationCore.CompilerConfig") as mock_config_class,
+            patch("src.core.CompilationCore.CompilationCore") as mock_core_class,
+            patch("src.core.CompilationCore.ReportGenerator") as mock_generator_class,
+        ):
 
             # Create mock instances
             mock_config = Mock(spec=CompilerConfig)
@@ -366,11 +351,10 @@ class TestReportGenerator:
     @pytest.fixture
     def report_generator(self):
         """Create a ReportGenerator instance with mocked dependencies for testing."""
-        with patch(
-            "src.core.CompilationCore.CompilerConfig"
-        ) as mock_config_class, patch(
-            "src.core.CompilationCore.CompilationCore"
-        ) as mock_core_class:
+        with (
+            patch("src.core.CompilationCore.CompilerConfig") as mock_config_class,
+            patch("src.core.CompilationCore.CompilationCore") as mock_core_class,
+        ):
 
             # Create mock instances
             mock_config = Mock(spec=CompilerConfig)
@@ -423,13 +407,11 @@ class TestIntegrityVerifier:
     @pytest.fixture
     def integrity_verifier(self):
         """Create an IntegrityVerifier instance for testing."""
-        with patch(
-            "src.core.CompilationCore.CompilerConfig"
-        ) as mock_config_class, patch(
-            "src.core.CompilationCore.CompilationCore"
-        ) as mock_core_class, patch(
-            "src.core.CompilationCore.ReportGenerator"
-        ) as mock_generator_class:
+        with (
+            patch("src.core.CompilationCore.CompilerConfig") as mock_config_class,
+            patch("src.core.CompilationCore.CompilationCore") as mock_core_class,
+            patch("src.core.CompilationCore.ReportGenerator") as mock_generator_class,
+        ):
 
             # Create mock instances
             mock_config = Mock(spec=CompilerConfig)
@@ -486,11 +468,10 @@ class TestSystemData:
     @pytest.fixture
     def system_data(self):
         """Create a SystemData instance for testing."""
-        with patch(
-            "src.core.CompilationCore.CompilerConfig"
-        ) as mock_config_class, patch(
-            "src.core.CompilationCore.CompilationCore"
-        ) as mock_core_class:
+        with (
+            patch("src.core.CompilationCore.CompilerConfig") as mock_config_class,
+            patch("src.core.CompilationCore.CompilationCore") as mock_core_class,
+        ):
 
             # Create mock instances
             mock_config = Mock(spec=CompilerConfig)
@@ -581,13 +562,11 @@ class TestCompilationContext:
     @pytest.fixture
     def compilation_context(self):
         """Create a CompilationContext instance for testing."""
-        with patch(
-            "src.core.CompilationCore.CompilerConfig"
-        ) as mock_config_class, patch(
-            "src.core.CompilationCore.CompilationCore"
-        ) as mock_core_class, patch(
-            "src.core.CompilationCore.ReportGenerator"
-        ) as mock_generator_class:
+        with (
+            patch("src.core.CompilationCore.CompilerConfig") as mock_config_class,
+            patch("src.core.CompilationCore.CompilationCore") as mock_core_class,
+            patch("src.core.CompilationCore.ReportGenerator") as mock_generator_class,
+        ):
 
             # Create mock instances
             mock_config = Mock(spec=CompilerConfig)
@@ -628,9 +607,10 @@ class TestCompilationContext:
 
     def test_context_manager(self, compilation_context):
         """Test context manager functionality."""
-        with patch.object(CompilationContext, "__enter__") as mock_enter, patch.object(
-            CompilationContext, "__exit__"
-        ) as mock_exit:
+        with (
+            patch.object(CompilationContext, "__enter__") as mock_enter,
+            patch.object(CompilationContext, "__exit__") as mock_exit,
+        ):
 
             mock_enter.return_value = compilation_context
 
@@ -649,17 +629,13 @@ class TestCompilationEngine:
     @pytest.fixture
     def compilation_engine(self):
         """Create a CompilationEngine instance with mocked dependencies for testing."""
-        with patch(
-            "src.core.CompilationCore.SystemScanner"
-        ) as mock_scanner_class, patch(
-            "src.core.CompilationCore.ReportGenerator"
-        ) as mock_generator_class, patch(
-            "src.core.CompilationCore.IntegrityVerifier"
-        ) as mock_verifier_class, patch(
-            "src.core.CompilationCore.CompilerConfig"
-        ) as mock_config_class, patch(
-            "src.core.CompilationCore.CompilationCore"
-        ) as mock_core_class:
+        with (
+            patch("src.core.CompilationCore.SystemScanner") as mock_scanner_class,
+            patch("src.core.CompilationCore.ReportGenerator") as mock_generator_class,
+            patch("src.core.CompilationCore.IntegrityVerifier") as mock_verifier_class,
+            patch("src.core.CompilationCore.CompilerConfig") as mock_config_class,
+            patch("src.core.CompilationCore.CompilationCore") as mock_core_class,
+        ):
 
             # Create mock instances
             mock_scanner = Mock(spec=SystemScanner)

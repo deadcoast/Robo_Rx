@@ -49,14 +49,19 @@ class TestExecutionManager:
     @pytest.fixture
     def execution_manager(self, mock_controller, mock_validator, mock_monitor):
         """Create an ExecutionManager with mocked dependencies."""
-        with patch(
-            "src.managers.ExecutionManager.ExecutionController",
-            return_value=mock_controller,
-        ), patch(
-            "src.managers.ExecutionManager.ExecutionValidator",
-            return_value=mock_validator,
-        ), patch(
-            "src.managers.ExecutionManager.ExecutionMonitor", return_value=mock_monitor
+        with (
+            patch(
+                "src.managers.ExecutionManager.ExecutionController",
+                return_value=mock_controller,
+            ),
+            patch(
+                "src.managers.ExecutionManager.ExecutionValidator",
+                return_value=mock_validator,
+            ),
+            patch(
+                "src.managers.ExecutionManager.ExecutionMonitor",
+                return_value=mock_monitor,
+            ),
         ):
             manager = ExecutionManager()
             # Set mocked objects for easier testing

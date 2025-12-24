@@ -4,12 +4,8 @@ from unittest.mock import MagicMock, Mock, patch
 import pytest
 
 from src.ChainResult import ChainResult
-from src.core.ChainCore import (
-    ChainExecutor,
-    ChainManager,
-    ChainMetrics,
-    TaskChainConfig,
-)
+from src.core.ChainCore import (ChainExecutor, ChainManager, ChainMetrics,
+                                TaskChainConfig)
 from src.Results.ExecutionResult import ExecutionResult
 
 
@@ -329,11 +325,11 @@ class TestChainExecutor:
     @pytest.fixture
     def chain_executor(self):
         """Create a ChainExecutor instance for testing."""
-        with patch("src.core.ChainCore.ChainValidator") as mock_validator, patch(
-            "src.core.ChainCore.ResourceManager"
-        ) as mock_resource_manager, patch(
-            "src.core.ChainCore.ExecutionMonitor"
-        ) as mock_monitor:
+        with (
+            patch("src.core.ChainCore.ChainValidator") as mock_validator,
+            patch("src.core.ChainCore.ResourceManager") as mock_resource_manager,
+            patch("src.core.ChainCore.ExecutionMonitor") as mock_monitor,
+        ):
 
             executor = ChainExecutor()
 

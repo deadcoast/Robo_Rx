@@ -8,11 +8,8 @@ import pytest
 import torch
 import torch.nn as nn
 
-from src.managers.ResourceManager import (
-    ResourceManager,
-    ResourceNotFoundError,
-    ResourceType,
-)
+from src.managers.ResourceManager import (ResourceManager,
+                                          ResourceNotFoundError, ResourceType)
 
 
 class TestResourceManager:
@@ -285,9 +282,11 @@ class TestResourceManager:
     def test_is_safe_file_source(self, resource_manager):
         """Test the _is_safe_file_source method."""
         # Mock Path.absolute and Path.home
-        with patch("pathlib.Path.absolute") as mock_absolute, patch(
-            "pathlib.Path.home"
-        ) as mock_home, patch("pathlib.Path.cwd") as mock_cwd:
+        with (
+            patch("pathlib.Path.absolute") as mock_absolute,
+            patch("pathlib.Path.home") as mock_home,
+            patch("pathlib.Path.cwd") as mock_cwd,
+        ):
 
             # Setup
             mock_home.return_value = Path("/home/user")

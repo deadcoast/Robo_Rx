@@ -5,7 +5,8 @@ import pytest
 from src.config.EngineConfig import SystemConfig
 from src.Continuation import Continuation
 from src.ContinuationResult import ContinuationResult
-from src.core.ExecutionCore import ExecutionController, ExecutionCore, ExecutionMetrics
+from src.core.ExecutionCore import (ExecutionController, ExecutionCore,
+                                    ExecutionMetrics)
 from src.ExecutionResult import ExecutionResult
 
 
@@ -20,14 +21,11 @@ class TestExecutionCore:
     @pytest.fixture
     def execution_core(self, config):
         """Create an ExecutionCore instance for testing."""
-        with patch(
-            "src.core.ExecutionCore.ExecutionValidator"
-        ) as mock_validator, patch(
-            "src.core.ExecutionCore.ResourceManager"
-        ) as mock_resource_manager, patch(
-            "src.core.ExecutionCore.ExecutionMonitor"
-        ) as mock_monitor, patch.object(
-            ExecutionCore, "_initialize"
+        with (
+            patch("src.core.ExecutionCore.ExecutionValidator") as mock_validator,
+            patch("src.core.ExecutionCore.ResourceManager") as mock_resource_manager,
+            patch("src.core.ExecutionCore.ExecutionMonitor") as mock_monitor,
+            patch.object(ExecutionCore, "_initialize"),
         ):
 
             core = ExecutionCore(config)
@@ -49,19 +47,16 @@ class TestExecutionCore:
     def test_initialize(self, config):
         """Test the _initialize method."""
         # Setup mocks for all components
-        with patch(
-            "src.core.ExecutionCore.ExecutionValidator"
-        ) as mock_validator, patch(
-            "src.core.ExecutionCore.ResourceManager"
-        ) as mock_resource_manager, patch(
-            "src.core.ExecutionCore.ExecutionMonitor"
-        ) as mock_monitor, patch(
-            "src.core.ExecutionCore.StateManager"
-        ) as mock_state_manager, patch(
-            "src.core.ExecutionCore.ResourceAllocator"
-        ) as mock_resource_allocator, patch(
-            "src.core.ExecutionCore.ProgressTracker"
-        ) as mock_progress_tracker:
+        with (
+            patch("src.core.ExecutionCore.ExecutionValidator") as mock_validator,
+            patch("src.core.ExecutionCore.ResourceManager") as mock_resource_manager,
+            patch("src.core.ExecutionCore.ExecutionMonitor") as mock_monitor,
+            patch("src.core.ExecutionCore.StateManager") as mock_state_manager,
+            patch(
+                "src.core.ExecutionCore.ResourceAllocator"
+            ) as mock_resource_allocator,
+            patch("src.core.ExecutionCore.ProgressTracker") as mock_progress_tracker,
+        ):
 
             # Create instance with mocked _initialize to avoid calling it during construction
             with patch.object(ExecutionCore, "_initialize"):
@@ -224,14 +219,14 @@ class TestExecutionController:
     @pytest.fixture
     def execution_controller(self, config):
         """Create an ExecutionController instance for testing."""
-        with patch("src.core.ExecutionCore.StateManager") as mock_state_manager, patch(
-            "src.core.ExecutionCore.ResourceAllocator"
-        ) as mock_resource_allocator, patch(
-            "src.core.ExecutionCore.ProgressTracker"
-        ) as mock_progress_tracker, patch(
-            "src.core.ExecutionCore.ExecutionMonitor"
-        ) as mock_monitor, patch.object(
-            ExecutionController, "_initialize"
+        with (
+            patch("src.core.ExecutionCore.StateManager") as mock_state_manager,
+            patch(
+                "src.core.ExecutionCore.ResourceAllocator"
+            ) as mock_resource_allocator,
+            patch("src.core.ExecutionCore.ProgressTracker") as mock_progress_tracker,
+            patch("src.core.ExecutionCore.ExecutionMonitor") as mock_monitor,
+            patch.object(ExecutionController, "_initialize"),
         ):
 
             controller = ExecutionController(config)
@@ -255,13 +250,14 @@ class TestExecutionController:
     def test_initialize(self, config):
         """Test the _initialize method."""
         # Setup
-        with patch("src.core.ExecutionCore.StateManager") as mock_state_manager, patch(
-            "src.core.ExecutionCore.ResourceAllocator"
-        ) as mock_resource_allocator, patch(
-            "src.core.ExecutionCore.ProgressTracker"
-        ) as mock_progress_tracker, patch(
-            "src.core.ExecutionCore.ExecutionMonitor"
-        ) as mock_monitor:
+        with (
+            patch("src.core.ExecutionCore.StateManager") as mock_state_manager,
+            patch(
+                "src.core.ExecutionCore.ResourceAllocator"
+            ) as mock_resource_allocator,
+            patch("src.core.ExecutionCore.ProgressTracker") as mock_progress_tracker,
+            patch("src.core.ExecutionCore.ExecutionMonitor") as mock_monitor,
+        ):
 
             # Create instance with mocked _initialize to avoid calling it during construction
             with patch.object(ExecutionController, "_initialize"):

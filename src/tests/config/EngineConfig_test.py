@@ -17,21 +17,22 @@ class TestEngineConfig:
         mock_config = Mock()
         # Set class to help with isinstance checks
         mock_config.__class__ = SystemConfig
-        
+
         # Configure special methods with direct method definitions
         mock_config.__str__ = Mock(return_value="MockSystemConfig")
         mock_config.__repr__ = Mock(return_value="MockSystemConfig")
         mock_config.__hash__ = Mock(return_value=hash("MockSystemConfig"))
-        
+
         # Set up equality methods
         def mock_eq(other):
             return isinstance(other, Mock) and other is mock_config
-        
+
         def mock_ne(other):
             return not mock_eq(other)
+
         mock_config.__eq__ = Mock(side_effect=mock_eq)
         mock_config.__ne__ = Mock(side_effect=mock_ne)
-        
+
         return mock_config
 
     @pytest.fixture
@@ -203,7 +204,9 @@ class TestEngineConfig:
         # Create a real EngineConfig instance for the test
         new_engine_config = EngineConfig(system_config)
         # Patch the deepcopy method to return our new config
-        with patch.object(engine_config, "__deepcopy__", return_value=new_engine_config):
+        with patch.object(
+            engine_config, "__deepcopy__", return_value=new_engine_config
+        ):
             # Call the method
             result = engine_config.__deepcopy__(memo)
 

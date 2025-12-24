@@ -132,12 +132,15 @@ class TestProcessingPool:
         test_items = ["item1", "item2", "item3"]
 
         # Call the method directly without mocking internals
-        with patch.object(
-            processing_pool, "_process_items", wraps=processing_pool._process_items
-        ), patch.object(
-            processing_pool,
-            "_aggregate_results",
-            wraps=processing_pool._aggregate_results,
+        with (
+            patch.object(
+                processing_pool, "_process_items", wraps=processing_pool._process_items
+            ),
+            patch.object(
+                processing_pool,
+                "_aggregate_results",
+                wraps=processing_pool._aggregate_results,
+            ),
         ):
 
             result = await processing_pool.map(test_func, test_items)

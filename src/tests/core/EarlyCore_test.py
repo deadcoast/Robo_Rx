@@ -5,21 +5,12 @@ from unittest.mock import Mock, patch
 import numpy as np
 import pytest
 
-from src.core.EarlyCore import (
-    AnalyticsProgress,
-    BatchData,
-    BatchMetrics,
-    BERTEmbedding,
-    FeatureGenerationStats,
-    FeatureMatrix,
-    FeatureProcessor,
-    MarkdownProcessor,
-    MDParser,
-    MetaExtractor,
-    MetaFeatureExtractor,
-    ProcessingStats,
-    ProgressTracker,
-)
+from src.core.EarlyCore import (AnalyticsProgress, BatchData, BatchMetrics,
+                                BERTEmbedding, FeatureGenerationStats,
+                                FeatureMatrix, FeatureProcessor,
+                                MarkdownProcessor, MDParser, MetaExtractor,
+                                MetaFeatureExtractor, ProcessingStats,
+                                ProgressTracker)
 
 
 class TestProgressTracker:
@@ -202,13 +193,12 @@ class TestMarkdownProcessor:
     @pytest.fixture
     def markdown_processor(self, config):
         """Create a MarkdownProcessor instance with mocked dependencies for testing."""
-        with patch("src.core.EarlyCore.MDParser") as mock_parser_class, patch(
-            "src.core.EarlyCore.MetaExtractor"
-        ) as mock_extractor_class, patch(
-            "src.core.EarlyCore.Normalizer"
-        ) as mock_normalizer_class, patch(
-            "src.core.EarlyCore.logging.getLogger"
-        ) as mock_get_logger:
+        with (
+            patch("src.core.EarlyCore.MDParser") as mock_parser_class,
+            patch("src.core.EarlyCore.MetaExtractor") as mock_extractor_class,
+            patch("src.core.EarlyCore.Normalizer") as mock_normalizer_class,
+            patch("src.core.EarlyCore.logging.getLogger") as mock_get_logger,
+        ):
 
             # Create mock objects
             mock_parser = Mock()
@@ -293,11 +283,11 @@ class TestBERTEmbedding:
     @pytest.fixture
     def bert_embedding(self):
         """Create a BERTEmbedding instance with mocked dependencies for testing."""
-        with patch("src.core.EarlyCore.BertTokenizer") as mock_tokenizer_class, patch(
-            "src.core.EarlyCore.torch.cuda.is_available"
-        ) as mock_cuda_available, patch(
-            "src.core.EarlyCore.logging.getLogger"
-        ) as mock_get_logger:
+        with (
+            patch("src.core.EarlyCore.BertTokenizer") as mock_tokenizer_class,
+            patch("src.core.EarlyCore.torch.cuda.is_available") as mock_cuda_available,
+            patch("src.core.EarlyCore.logging.getLogger") as mock_get_logger,
+        ):
 
             # Create mock objects
             mock_tokenizer = Mock()

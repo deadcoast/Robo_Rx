@@ -6,15 +6,9 @@ from unittest.mock import AsyncMock, Mock, patch
 import numpy as np
 import pytest
 
-from src.core.AdvancedCore import (
-    AdvancedFeatureProcessor,
-    MetadataFeatures,
-    SizeStatistics,
-    Task,
-    TaskRegistration,
-    TaskRegistryManager,
-    TimestampData,
-)
+from src.core.AdvancedCore import (AdvancedFeatureProcessor, MetadataFeatures,
+                                   SizeStatistics, Task, TaskRegistration,
+                                   TaskRegistryManager, TimestampData)
 from src.engines.EngineConfig import EngineConfig
 from src.SystemConfig import SystemConfig
 
@@ -151,15 +145,14 @@ class TestAdvancedFeatureProcessor:
     @pytest.fixture
     def processor(self, config):
         """Create an AdvancedFeatureProcessor instance with mocked dependencies for testing."""
-        with patch(
-            "src.core.AdvancedCore.TopicModelingEngine"
-        ) as mock_topic_engine, patch(
-            "src.core.AdvancedCore.GraphFeatureProcessor"
-        ) as mock_graph_processor, patch(
-            "src.core.AdvancedCore.logging.getLogger"
-        ) as mock_get_logger, patch(
-            "src.core.AdvancedCore.FeatureProcessor.__init__"
-        ) as mock_super_init:
+        with (
+            patch("src.core.AdvancedCore.TopicModelingEngine") as mock_topic_engine,
+            patch(
+                "src.core.AdvancedCore.GraphFeatureProcessor"
+            ) as mock_graph_processor,
+            patch("src.core.AdvancedCore.logging.getLogger") as mock_get_logger,
+            patch("src.core.AdvancedCore.FeatureProcessor.__init__") as mock_super_init,
+        ):
 
             # Create mock objects
             mock_topic = Mock()
@@ -197,15 +190,20 @@ class TestAdvancedFeatureProcessor:
         ]
 
         # Mock component methods
-        with patch.object(
-            processor, "_generate_embeddings", new_callable=AsyncMock
-        ) as mock_gen_emb, patch.object(
-            processor.topic_engine, "extract_features", new_callable=AsyncMock
-        ) as mock_extract, patch.object(
-            processor.graph_processor, "compute_features", new_callable=AsyncMock
-        ) as mock_compute, patch.object(
-            processor, "_process_metadata", new_callable=AsyncMock
-        ) as mock_process:
+        with (
+            patch.object(
+                processor, "_generate_embeddings", new_callable=AsyncMock
+            ) as mock_gen_emb,
+            patch.object(
+                processor.topic_engine, "extract_features", new_callable=AsyncMock
+            ) as mock_extract,
+            patch.object(
+                processor.graph_processor, "compute_features", new_callable=AsyncMock
+            ) as mock_compute,
+            patch.object(
+                processor, "_process_metadata", new_callable=AsyncMock
+            ) as mock_process,
+        ):
 
             # Setup mock return values
             mock_gen_emb.return_value = [[0.1, 0.2], [0.3, 0.4]]
@@ -239,12 +237,10 @@ class TestAdvancedFeatureProcessor:
         model_mock = Mock()
         model_mock.encode.return_value = np.array([[0.1, 0.2], [0.3, 0.4]])
 
-        with patch(
-            "src.core.AdvancedCore.logging.getLogger"
-        ) as mock_get_logger, patch.dict(
-            "sys.modules", {"sentence_transformers": Mock()}
-        ), patch(
-            "src.core.AdvancedCore.SentenceTransformer", return_value=model_mock
+        with (
+            patch("src.core.AdvancedCore.logging.getLogger") as mock_get_logger,
+            patch.dict("sys.modules", {"sentence_transformers": Mock()}),
+            patch("src.core.AdvancedCore.SentenceTransformer", return_value=model_mock),
         ):
 
             # Create mock logger
@@ -270,13 +266,11 @@ class TestAdvancedFeatureProcessor:
             {"id": "doc3", "other": "No content or title"},
         ]
 
-        with patch(
-            "src.core.AdvancedCore.logging.getLogger"
-        ) as mock_get_logger, patch.dict(
-            "sys.modules", {"sentence_transformers": None}
-        ), patch(
-            "src.core.AdvancedCore.hashlib.md5"
-        ) as mock_md5:
+        with (
+            patch("src.core.AdvancedCore.logging.getLogger") as mock_get_logger,
+            patch.dict("sys.modules", {"sentence_transformers": None}),
+            patch("src.core.AdvancedCore.hashlib.md5") as mock_md5,
+        ):
 
             # Create mock logger
             mock_logger = Mock(spec=logging.Logger)
@@ -713,11 +707,10 @@ class TestTaskRegistryManager:
         manager.active_tasks = [task]
 
         # Mock finalize_task_in_registry and _log_task_completion
-        with patch.object(
-            manager, "finalize_task_in_registry"
-        ) as mock_finalize, patch.object(
-            manager, "_log_task_completion"
-        ) as mock_log_completion:
+        with (
+            patch.object(manager, "finalize_task_in_registry") as mock_finalize,
+            patch.object(manager, "_log_task_completion") as mock_log_completion,
+        ):
 
             # Call the method
             manager.complete_task(task_id=task_id, result={"success": True})

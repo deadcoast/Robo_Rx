@@ -1,0 +1,23 @@
+[project]
+name = "robo-claud"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "black>=25.12.0",
+    "langdetect>=1.0.9",
+    "markdown>=3.3.4",
+    "networkx>=2.6.3",
+    "nltk>=3.6.5",
+    "numpy>=1.21.0",
+    "ruff>=0.14.10",
+    "scikit-learn>=1.0.0",
+    "sourcery>=1.41.1",
+    "spacy>=3.2.0",
+    "textblob>=0.15.3",
+    "textstat>=0.7.3",
+    "torch>=1.9.0",
+    "tqdm>=4.62.3",
+    "transformers>=4.12.0",
+]

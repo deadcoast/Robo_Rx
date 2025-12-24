@@ -1,4 +1,5 @@
 import inspect
+
 import pytest
 
 from src.analyzers.ResultAnalyzer import ResultAnalyzer

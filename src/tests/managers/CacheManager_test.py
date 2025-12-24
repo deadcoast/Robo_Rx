@@ -1,8 +1,8 @@
 import asyncio
+import tempfile
 import time
 from contextlib import suppress
 from unittest.mock import AsyncMock, MagicMock, Mock, patch
-import tempfile
 
 import pytest
 

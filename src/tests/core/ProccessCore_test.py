@@ -2,18 +2,11 @@ from unittest.mock import Mock, patch
 
 import pytest
 
-from src.core.ProccessCore import (
-    DictIterator,
-    ExecutionResult,
-    ProcessingConfig,
-    ProcessingContext,
-    ProcessingEngine,
-    ProcessingError,
-    ProcessingResult,
-    ProcessingStatus,
-    ResultProcessor,
-    ValidationStatus,
-)
+from src.core.ProccessCore import (DictIterator, ExecutionResult,
+                                   ProcessingConfig, ProcessingContext,
+                                   ProcessingEngine, ProcessingError,
+                                   ProcessingResult, ProcessingStatus,
+                                   ResultProcessor, ValidationStatus)
 from src.ValidationData import ValidationData
 
 
@@ -347,13 +340,11 @@ class TestResultProcessor:
     @pytest.fixture
     def result_processor(self, config):
         """Create a ResultProcessor instance with mocked dependencies for testing."""
-        with patch(
-            "src.core.ProccessCore.ResultAnalyzer"
-        ) as mock_analyzer_class, patch(
-            "src.core.ProccessCore.ValidationEngine"
-        ) as mock_validator_class, patch(
-            "src.core.ProccessCore.MetricsComputer"
-        ) as mock_metrics_class:
+        with (
+            patch("src.core.ProccessCore.ResultAnalyzer") as mock_analyzer_class,
+            patch("src.core.ProccessCore.ValidationEngine") as mock_validator_class,
+            patch("src.core.ProccessCore.MetricsComputer") as mock_metrics_class,
+        ):
 
             # Create mock instances
             mock_analyzer = Mock()
@@ -424,13 +415,13 @@ class TestProcessingEngine:
     @pytest.fixture
     def processing_engine(self):
         """Create a ProcessingEngine instance with mocked dependencies for testing."""
-        with patch(
-            "src.core.ProccessCore.AnalysisInitializer"
-        ) as mock_initializer_class, patch(
-            "src.core.ProccessCore.ExecutionCore"
-        ) as mock_executor_class, patch(
-            "src.core.ProccessCore.ResultCompiler"
-        ) as mock_compiler_class:
+        with (
+            patch(
+                "src.core.ProccessCore.AnalysisInitializer"
+            ) as mock_initializer_class,
+            patch("src.core.ProccessCore.ExecutionCore") as mock_executor_class,
+            patch("src.core.ProccessCore.ResultCompiler") as mock_compiler_class,
+        ):
 
             # Create mock instances
             mock_initializer = Mock()

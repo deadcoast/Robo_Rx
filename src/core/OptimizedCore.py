@@ -24,15 +24,10 @@ from transformers.pipelines import SummarizationPipeline  # type: ignore
 
 # Local imports
 from analyzers.CommunityAnalyst import CommunityAnalyst  # type: ignore
-
 # Import FeatureCore components - avoid name conflicts with torch.onnx.AnalysisResult
 from FeatureCore import AnalysisResult as FCAnalysisResult
-from FeatureCore import (
-    AnalyticsEngine,
-    FeatureProcessor,
-    MarkdownProcessor,
-    SystemConfig,
-)
+from FeatureCore import (AnalyticsEngine, FeatureProcessor, MarkdownProcessor,
+                         SystemConfig)
 
 # Avoid the torch.onnx AnalysisResult import as it conflicts with FeatureCore.AnalysisResult
 # We'll use the fully qualified name when needed

@@ -45,7 +45,9 @@ class TestContextManager:
         assert len(context_manager.contexts) == 0
 
     @pytest.mark.asyncio
-    async def test_create_context(self, context_manager, sample_context_data, mock_config):
+    async def test_create_context(
+        self, context_manager, sample_context_data, mock_config
+    ):
         """Test creating a new context."""
         # Create a new context
         context_id = await context_manager.create_context(sample_context_data)

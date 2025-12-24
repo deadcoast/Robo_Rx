@@ -1,17 +1,17 @@
-# Robo Claud
+# Robo Rx
 
 A modular, extensible document processing and task management system designed for high-performance data analysis and workflow orchestration.
 
 ## Overview
 
-Robo Claud is a sophisticated Python framework that provides comprehensive document processing, feature extraction, task management, and system analysis capabilities. The system is built with a focus on modularity, allowing for flexible configuration and extension of its core components.
+Robo Rx is a sophisticated Python framework that provides comprehensive document processing, feature extraction, task management, and system analysis capabilities. The system is built with a focus on modularity, allowing for flexible configuration and extension of its core components.
 
 ## System Architecture
 
-Robo Claud follows a modular architecture with specialized core components that work together to form a complete processing pipeline:
+Robo Rx follows a modular architecture with specialized core components that work together to form a complete processing pipeline:
 
 ```tree
-Robo Claud
+Robo Rx
 ├── src/                      # Source code directory
 │   ├── main.py               # Main entry point and core classes
 │   ├── AdvancedCore.py       # Enhanced feature processing
@@ -56,7 +56,7 @@ Robo Claud
 
 ## Requirements
 
-Robo Claud relies on several Python packages:
+Robo Rx relies on several Python packages:
 
 - Python 3.8+
 - asyncio
@@ -75,8 +75,8 @@ Robo Claud relies on several Python packages:
 Clone the repo:
 
 ```sh
-git clone https://github.com/deadcoast/robo_claud.git
-cd robo_claud
+git clone https://github.com/deadcoast/robo_rx.git
+cd robo_rx
 ```
 
 > [!NOTE]
@@ -225,7 +225,7 @@ result = engine.execute_compilation(system_data)
 
 ## Architecture Design
 
-Robo Claud is built with the following architectural principles:
+Robo Rx is built with the following architectural principles:
 
 1. **Modularity**: Each core component focuses on a specific aspect of functionality
 2. **Asynchronous Processing**: Extensive use of async/await for non-blocking operations

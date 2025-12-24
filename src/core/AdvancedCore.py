@@ -7,11 +7,8 @@ from datetime import datetime
 from queue import Queue
 from typing import Any, Dict, List, Optional, TypedDict
 
-from src.AnalyticsCore import (
-    EnhancedFeatureSet,
-    GraphFeatureProcessor,
-    TopicModelingEngine,
-)
+from src.AnalyticsCore import (EnhancedFeatureSet, GraphFeatureProcessor,
+                               TopicModelingEngine)
 from src.engines.EngineConfig import EngineConfig
 from src.FeatureCore import FeatureProcessor
 from src.SystemConfig import SystemConfig

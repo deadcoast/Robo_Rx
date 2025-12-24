@@ -128,9 +128,7 @@ class TestKnowledgeGraph:
             == entity["attributes"]
         )
 
-        results = [
-            knowledge_graph.add_entity(entity) for entity in sample_entities[1:]
-        ]
+        results = [knowledge_graph.add_entity(entity) for entity in sample_entities[1:]]
         # Verify all entities were added successfully
         assert all(results)
         assert len(knowledge_graph.graph.nodes) == len(sample_entities)
@@ -180,8 +178,7 @@ class TestKnowledgeGraph:
         assert edge_data["attributes"] == relationship["attributes"]
 
         results = [
-            knowledge_graph.add_relationship(rel)
-            for rel in sample_relationships[1:]
+            knowledge_graph.add_relationship(rel) for rel in sample_relationships[1:]
         ]
         # Verify all relationships were added successfully
         assert all(results)

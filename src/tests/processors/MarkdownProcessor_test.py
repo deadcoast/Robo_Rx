@@ -5,7 +5,8 @@ from unittest.mock import AsyncMock, Mock, mock_open, patch
 
 import pytest
 
-from src.processors.MarkdownProcessor import MarkdownProcessingError, MarkdownProcessor
+from src.processors.MarkdownProcessor import (MarkdownProcessingError,
+                                              MarkdownProcessor)
 
 
 class TestMarkdownProcessingError:

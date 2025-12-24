@@ -192,10 +192,10 @@ class TestExecutionResult:
         # We need to patch the hash method since dictionaries are unhashable
         # This test will focus on verifying that hash behavior is consistent
         # for the same object and different for distinct objects
-        
+
         # Same object should have consistent hash
         assert hash(success_result) == hash(success_result)
-        
+
         # Create a different result to test hash inequality
         # Note: We can't directly compare hashes of different objects with dictionaries
         # because the hash implementation uses the unhashable metrics dictionary
@@ -205,7 +205,7 @@ class TestExecutionResult:
             error="Error",
             timestamp=sample_timestamp,
         )
-        
+
         # Verify different objects can be hashed (though we don't check exact values)
         hash(different_result)  # This should not raise an exception
 

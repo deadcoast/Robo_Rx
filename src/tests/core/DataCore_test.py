@@ -6,14 +6,9 @@ import pandas as pd
 import pytest
 import torch
 
-from src.core.DataCore import (
-    DataFrameProcessor,
-    DataHandler,
-    NumpyProcessor,
-    ProcessedData,
-    load_tensor_dict,
-    save_tensor_dict,
-)
+from src.core.DataCore import (DataFrameProcessor, DataHandler, NumpyProcessor,
+                               ProcessedData, load_tensor_dict,
+                               save_tensor_dict)
 
 
 class TestTensorDictFunctions:
@@ -285,11 +280,11 @@ class TestDataHandler:
     @pytest.fixture
     def data_handler(self):
         """Create a DataHandler instance for testing."""
-        with patch("src.core.DataCore.DataFrameProcessor") as mock_df_processor, patch(
-            "src.core.DataCore.NumpyProcessor"
-        ) as mock_numpy_processor, patch(
-            "src.core.DataCore.FileManager"
-        ) as mock_file_manager:
+        with (
+            patch("src.core.DataCore.DataFrameProcessor") as mock_df_processor,
+            patch("src.core.DataCore.NumpyProcessor") as mock_numpy_processor,
+            patch("src.core.DataCore.FileManager") as mock_file_manager,
+        ):
 
             handler = DataHandler()
 

@@ -11,7 +11,6 @@ from typing import Any, Dict, List
 
 # Import the necessary components from the correct locations
 from src.ChainResult import ChainResult  # type: ignore
-
 # Import with type ignores for modules lacking py.typed markers
 from src.config.SystemConfig import SystemConfig  # type: ignore
 from src.ExecutionMonitor import ExecutionMonitor  # type: ignore

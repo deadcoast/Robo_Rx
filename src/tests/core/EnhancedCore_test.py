@@ -46,13 +46,13 @@ class TestEnhancedMarkdownProcessor:
     @pytest.fixture
     def processor(self, config):
         """Create an EnhancedMarkdownProcessor instance with mocked dependencies for testing."""
-        with patch(
-            "src.core.EnhancedCore.MarkdownProcessor.__init__"
-        ) as mock_super_init, patch(
-            "src.core.EnhancedCore.NLPCore"
-        ) as mock_nlp_core_class, patch(
-            "src.core.EnhancedCore.DataHandler"
-        ) as mock_data_handler_class:
+        with (
+            patch(
+                "src.core.EnhancedCore.MarkdownProcessor.__init__"
+            ) as mock_super_init,
+            patch("src.core.EnhancedCore.NLPCore") as mock_nlp_core_class,
+            patch("src.core.EnhancedCore.DataHandler") as mock_data_handler_class,
+        ):
 
             # Create mocks
             mock_nlp_core = Mock()
@@ -126,8 +126,9 @@ class TestEnhancedMarkdownProcessor:
         mock_vault_path.rglob.side_effect = mock_error
 
         # Call the method and verify exception handling
-        with pytest.raises(EnhancedProcessingError) as excinfo, patch(
-            "src.core.EnhancedCore.ProcessingPool"
+        with (
+            pytest.raises(EnhancedProcessingError) as excinfo,
+            patch("src.core.EnhancedCore.ProcessingPool"),
         ):
             await processor.process_vault(mock_vault_path)
 

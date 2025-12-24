@@ -5,7 +5,6 @@ from typing import Any, Dict, List, Optional
 
 import numpy as np
 import torch
-
 # Add type ignore comments for imports with missing type stubs
 from sklearn.preprocessing import Normalizer  # type: ignore
 from transformers import BertTokenizer  # type: ignore
